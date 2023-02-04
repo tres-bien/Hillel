@@ -8,8 +8,8 @@ namespace Lesson_1
         static void Main(string[] args)
         {
             byte personAge = 24;
-            decimal minimumBankLimit = -1000000000000;
-            decimal maxsimumBankLimit = 1000000000000;
+            decimal minimumBankAccountLimit = -1000000000000;
+            decimal maxsimumBankAccountLimit = 1000000000000;
             char letter = 'F';
             string message = "Hello World";
             bool answer = true;
@@ -19,7 +19,7 @@ namespace Lesson_1
 
             Console.OutputEncoding = Encoding.Unicode;
             Console.WriteLine($"Вік людини: {personAge}\n" +
-                              $"Банківський рахунок з лімітом від: {minimumBankLimit} до {maxsimumBankLimit}\n" +
+                              $"Банківський рахунок з лімітом від: {minimumBankAccountLimit} до {maxsimumBankAccountLimit}\n" +
                               $"Літера: {letter}\n" +
                               $"SMS повідомлення: {message}\n" +
                               $"Дати оцінку твердженню: \"Сусід сказав, що людина може жити 1000 років\":.{answer}\n" +
