@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lesson_2
 {
-    internal class Program
+    internal class AuthenticationIfElse
     {
         static void Main(string[] args)
         {

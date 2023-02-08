@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lesson_3_switch_case
 {
-    internal class Program
+    internal class AuthenticationSwitch
     {
         static void Main(string[] args)
         {

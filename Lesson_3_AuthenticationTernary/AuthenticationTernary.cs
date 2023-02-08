@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lesson_3_AuthenticationTernary
 {
-    internal class Program
+    internal class AuthenticationTernary
     {
         static void Main(string[] args)
         {
