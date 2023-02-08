@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_2_data", "Lesson_2\Lesson_2_data.csproj", "{224567F7-8753-4963-9692-3CAB839F4409}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_3_AuthenticationIfElse", "Lesson_3\Lesson_3_AuthenticationIfElse.csproj", "{21263180-01DB-43B1-B381-C800D220219C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_3_AuthenticationIfElse", "Lesson_3_AuthenticationIfElse\Lesson_3_AuthenticationIfElse.csproj", "{21263180-01DB-43B1-B381-C800D220219C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_3_AuthenticationSwitch", "Lesson_3_switch_case\Lesson_3_AuthenticationSwitch.csproj", "{CA709CE2-B979-4FD8-91DA-3F7F1876D110}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_3_AuthenticationSwitch", "Lesson_3_AuthenticationSwitch\Lesson_3_AuthenticationSwitch.csproj", "{CA709CE2-B979-4FD8-91DA-3F7F1876D110}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_3_AuthenticationTernary", "Lesson_3_AuthenticationTernary\Lesson_3_AuthenticationTernary.csproj", "{C92A2EFC-1E03-408E-9658-338818F85A3A}"
 EndProject
