@@ -25,7 +25,7 @@ namespace Lesson_1
                               $"Температура людини: {humanTemperature}\n" +
                               $"Кількість населення планети: {humanPopulation}\n" +
                               $"Температура навколишньго середовища в Україні: {temperatureInUkraine}");
-
+            
             Console.ReadLine();
         }
     }
