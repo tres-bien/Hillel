@@ -11,22 +11,35 @@ namespace Lesson_2
     {
         static void Main(string[] args)
         {
-            string login = "USER";
-            string password = "user";
+            string userLogin = "USER";
+            string userPassword = "user";
             string adminLogin = "ADMIN";
             string adminPassword = "admin";
-            string loginImput = "";
 
-            loginImput = LoginCheck(login, adminLogin, loginImput);
-            PasswordCheck(password, adminPassword, login, adminLogin, loginImput);
+            string loginImput = LoginCheck(userLogin, adminLogin);
+
+            if (loginImput == "")
+            {
+
+            }
+            else if (loginImput == adminLogin || loginImput == userLogin)
+            {
+                PasswordCheck(userPassword, adminPassword, userLogin, adminLogin, loginImput);
+            }
+            else
+            {
+
+            }
+            
+            Console.ReadLine();
         }
 
-        static string LoginCheck(string login, string adminLogin, string loginImput)
+        static string LoginCheck(string userLogin, string adminLogin)
         {
             Console.WriteLine("Enter your login: ");
-            loginImput = Console.ReadLine();
+            string loginImput = Console.ReadLine();
 
-            if (loginImput == login)
+            if (loginImput == userLogin)
             {
                 return loginImput;
             }
@@ -34,24 +47,23 @@ namespace Lesson_2
             {
                 return loginImput;
             }
-            else if (loginImput != login || loginImput != adminLogin)
+            else if (loginImput == "")
             {
-                Console.WriteLine("user does not exist");
-                Environment.Exit(0);
+                Console.WriteLine("Hello Anonimus");
             }
             else
             {
-                Console.WriteLine("Hello Anonimus");
+                Console.WriteLine("user does not exist");
             }
             return loginImput;
         }
         
-        static void PasswordCheck(string password, string adminPassword, string login, string adminLogin, string loginImput)
+        static void PasswordCheck(string userPassword, string adminPassword, string userLogin, string adminLogin, string loginImput)
         {
             Console.WriteLine("Enter your password: ");
             string passwordImput = Console.ReadLine();
 
-            if (loginImput == login && passwordImput == password)
+            if (loginImput == userLogin && passwordImput == userPassword)
             {
                 Console.WriteLine("Hello User");
             }
