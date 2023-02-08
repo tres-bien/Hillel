@@ -1,68 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Lesson_2
+namespace Lesson_1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string login = "USER";
-            string password = "user";
-            string adminLogin = "ADMIN";
-            string adminPassword = "admin";
-            string loginImput = "";
+            byte personAge = 24;
+            double bankAccount = -1000000000000; //наскільки знаю в фін.установах гроші зберігаються в decimal
+            char letter = 'F';
+            string message = "Hello World";
+            bool answer = true;
+            float humanTemperature = 36.6f;
+            ulong humanPopulation = 8014895000;
+            float temperatureInUkraine = -2f; //термометром давно не користуюсь, але знаю що в гуглі температуру пишуть без дробей. Вважаю що це потрібно вказувати в тз
 
-            loginImput = LoginCheck(login, adminLogin, loginImput);
-            PasswordCheck(password, adminPassword, login, adminLogin, loginImput);
-        }
-
-        static string LoginCheck(string login, string adminLogin, string loginImput)
-        {
-            Console.WriteLine("Enter your login: ");
-            loginImput = Console.ReadLine();
-
-            if (loginImput == login)
-            {
-                return loginImput;
-            }
-            else if (loginImput == adminLogin)
-            {
-                return loginImput;
-            }
-            else if (loginImput != login || loginImput != adminLogin)
-            {
-                Console.WriteLine("user does not exist");
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.WriteLine("Hello Anonimus");
-            }
-            return loginImput;
-        }
-        
-        static void PasswordCheck(string password, string adminPassword, string login, string adminLogin, string loginImput)
-        {
-            Console.WriteLine("Enter your password: ");
-            string passwordImput = Console.ReadLine();
-
-            if (loginImput == login && passwordImput == password)
-            {
-                Console.WriteLine("Hello User");
-            }
-            else if (loginImput == adminLogin && passwordImput == adminPassword)
-            {
-                Console.WriteLine("Hello Admin");
-            }
-            else
-            {
-                Console.WriteLine("Incorrect password");
-            }
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.WriteLine($"Вік людини: {personAge}\n" +
+                              $"Банківський рахунок: {bankAccount}\n" +
+                              $"Літера: {letter}\n" +
+                              $"SMS повідомлення: {message}\n" +
+                              $"Дати оцінку твердженню: \"Сусід сказав, що людина може жити 1000 років\":.{answer}\n" +
+                              $"Температура людини: {humanTemperature}\n" +
+                              $"Кількість населення планети: {humanPopulation}\n" +
+                              $"Температура навколишньго середовища в Україні: {temperatureInUkraine}");
+            
+            Console.ReadLine();
         }
     }
 }
