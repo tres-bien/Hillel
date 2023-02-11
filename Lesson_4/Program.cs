@@ -16,42 +16,26 @@ namespace example
             // Зробити логічний зсув (logical shift) змінної 'mask' таким чином, щоб змогли розшифрувати слово у змінній 'word' 
 
             // маска
-            int mask = 0b0000011 <<5; // 0110 0000; 0011 0000; 0001 1000; 0000 1100; 0000 0110; 0000 0011;
+            int mask = 0b0000011 <<4; // 0110 0000; 0011 0000; 0001 1000; 0000 1100; 0000 0110; 0000 0011;
             string word = string.Empty;
 
             // Зашифроване слово
-            int w = 82; //0101 0010 to 0111 0111 or 0101 0111
-            int o = 85; //0101 0101 to 0110 1111 or 0100 1111
-            int r = 67; //0100 0011 to 0111 0010 or 0101 0010
-            int d = 68; //0100 0100 to 0110 0100 or 0100 0100
+            int w = 82;
+            int o = 85;
+            int r = 67;
+            int d = 68;
 
             // Розшифрувати слово використовуючи якусь одну побітову операцію до кожної змінної(замінити '?' на якусь побітову операцію)
-            w = w | mask;
-            o = o | mask;
-            r = r | mask;
-            d = d | mask;
+            w = w ^ mask;
+            o = o ^ mask;
+            r = r ^ mask;
+            d = d ^ mask;
 
             // 2. Завдання
             // Спростити багатогілкову констукцію до одного if
-            if (mask < MAX_SMASK_SIZE)
+            if (mask < MAX_SMASK_SIZE && mask > MIN_SMASK_SIZE && w < o && o < r && !(r > d) && o != '\x77' ^ w == 'J')
             {
-                if(mask > MIN_SMASK_SIZE)
-                {
-                    if (w < o)
-                    {
-                        if (o < r)
-                        {
-                            if (!(r > d))
-                            {
-                                if (o != '\x77' ^ w == 'J')
-                                {
-                                    // Будуємо слово
-                                    word = CreateWord(w, o, r, d);
-                                }
-                            }
-                        }
-                    }
-                }
+                word = CreateWord(w, o, r, d);
             }
 
             PrintMask(mask);
@@ -87,7 +71,7 @@ namespace example
         {
             // Конвертуємо тип int в char
             // Будуємо строку з символів
-            return $" Your word is: {(char)w}{(char)o}{(char)r}{(char)d}";
+            return $"Your word is: {(char)w}{(char)o}{(char)r}{(char)d}";
         }
     }
 }
