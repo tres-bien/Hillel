@@ -14,7 +14,7 @@ namespace Lesson_1
             bool answer = true;
             float humanTemperature = 36.6f;
             ulong humanPopulation = 8014895000;
-            float temperatureInUkraine = -2f;
+            float temperatureInUkraine = -2.0f;
             
             Console.OutputEncoding = Encoding.Unicode;
             Console.WriteLine($"Вік людини: {personAge}\n" +
