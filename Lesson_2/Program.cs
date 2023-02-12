@@ -8,14 +8,14 @@ namespace Lesson_1
         static void Main(string[] args)
         {
             byte personAge = 24;
-            double bankAccount = -1000000000000; //наскільки знаю в фін.установах гроші зберігаються в decimal
+            double bankAccount = -1000000000000;
             char letter = 'F';
             string message = "Hello World";
             bool answer = true;
             float humanTemperature = 36.6f;
             ulong humanPopulation = 8014895000;
-            float temperatureInUkraine = -2f; //термометром давно не користуюсь, але знаю що в гуглі температуру пишуть без дробей. Вважаю що це потрібно вказувати в тз
-
+            float temperatureInUkraine = -2f;
+            
             Console.OutputEncoding = Encoding.Unicode;
             Console.WriteLine($"Вік людини: {personAge}\n" +
                               $"Банківський рахунок: {bankAccount}\n" +
