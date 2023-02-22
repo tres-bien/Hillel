@@ -58,10 +58,10 @@ namespace Lesson_3_switch_case
 
             switch (passwordImput)
             {
-                case "user" when login == loginImput && passwordImput == userPassword:
+                case "user" when loginImput == adminPassword:
                     Console.WriteLine("Hello User");
                     break;
-                case "admin" when adminLogin == loginImput && passwordImput == adminPassword:
+                case "admin" when loginImput == adminLogin:
                     Console.WriteLine("Hello Admin");
                     break;
                 default:
