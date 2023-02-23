@@ -45,7 +45,7 @@ namespace Calculator
                     Console.WriteLine(operand1 / operand2);
                     break;
                 case '^':
-                    int square = operand1;
+                    int square = 1;
                     for (int i = 1; i < operand2; i++)
                     {
                         square *= operand1;
