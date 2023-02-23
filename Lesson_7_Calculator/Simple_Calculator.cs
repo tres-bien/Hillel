@@ -46,7 +46,7 @@ namespace Calculator
                     break;
                 case '^':
                     int square = 1;
-                    for (int i = 1; i < operand2; i++)
+                    for (int i = 1; i <= operand2; i++)
                     {
                         square *= operand1;
                     }
