@@ -13,7 +13,14 @@ public class Libraty
     {
         get
         {
-            return 0;
+            if (_books != null)
+            {
+                return _books.Length;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 
