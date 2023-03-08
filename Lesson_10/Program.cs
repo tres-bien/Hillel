@@ -40,15 +40,15 @@ namespace Lesson_10
                     }
                 }
             }
-            string[] names2 = names.ToString().Split(' ');
-            names = new StringBuilder(names2[0] + ' ');
-            for (int i = 0; i < names2.Length; i++)
+            string[] namesArray = names.ToString().Split(' ');
+            names = new StringBuilder(namesArray[0] + ' ');
+            for (int i = 0; i < namesArray.Length; i++)
             {
-                for (int j = 0; j < names2.Length; j++)
+                for (int j = 0; j < namesArray.Length; j++)
                 {
-                    if (!names.ToString().Contains(names2[j]))
+                    if (!names.ToString().Contains(namesArray[j]))
                     {
-                        names.Append(names2[j] + ' ');
+                        names.Append(namesArray[j] + ' ');
                     }
                 }
             }
