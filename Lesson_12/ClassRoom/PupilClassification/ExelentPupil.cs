@@ -13,5 +13,25 @@ namespace Lesson_12
             success = "EXELENT";
             relax = "BAD";
         }
+
+        public override void Study()
+        {
+            base.Study();
+        }
+
+        public override void Read()
+        {
+            base.Read();
+        }
+
+        public override void Write()
+        {
+            base.Write();
+        }
+
+        public override void Relax()
+        {
+            base.Relax();
+        }
     }
 }

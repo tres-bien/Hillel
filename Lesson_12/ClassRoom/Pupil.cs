@@ -11,27 +11,22 @@ namespace Lesson_12
         public string success;
         public string relax;
 
-        public void Random(Pupil badPupil, Pupil goodPupil, Pupil exelentPupil)
-        {
-            
-        }
-
-        public void Study(string success)
+        public virtual void Study()
         {
             Console.WriteLine($"Вчиться: {success}");
         }
 
-        public void Read(string success)
+        public virtual void Read()
         {
             Console.WriteLine($"Читає: {success}");
         }
 
-        public void Write(string success)
+        public virtual void Write()
         {
             Console.WriteLine($"Пише: {success}");
         }
 
-        public void Relax(string relax)
+        public virtual void Relax()
         {
             Console.WriteLine($"Відпочиває: {relax}");
         }

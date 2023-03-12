@@ -8,15 +8,13 @@ namespace Lesson_12
         {
             Console.OutputEncoding = Encoding.Unicode;
 
-            var classRoom = new ClassRoom();
-
-            classRoom.pupils = new Pupil[4];
-
             Pupil badPupil = new BadPupil();
             Pupil goodPupil = new GoodPupil();
             Pupil exelentPupil = new ExelentPupil();
 
-            classRoom.Random(badPupil, goodPupil, exelentPupil);
+            Pupil[] arr = { badPupil, goodPupil, exelentPupil };
+
+            var classRoom = new ClassRoom(new Pupil[4], arr);
 
             classRoom.Show(badPupil, goodPupil, exelentPupil);
         }
