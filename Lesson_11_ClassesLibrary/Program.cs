@@ -15,7 +15,7 @@ namespace Classes
 
             library.FillLibrary();
 
-            var codeCompleteBook = library.FindBookByTitle("Code");
+            var codeCompleteBook = library.FindBookByTitle("123");
 
             codeCompleteBook.Show();
 

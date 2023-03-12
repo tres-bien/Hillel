@@ -61,7 +61,7 @@ public class Libraty
                 return _books[i];
             }
         }
-        return _books[0];
+        return null;
     }
 
     /// <summary>
