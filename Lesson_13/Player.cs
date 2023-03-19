@@ -15,7 +15,7 @@ namespace Lesson_13
         private bool _record = false;
         private int action;
 
-        public Player()
+        public void Run()
         {
             Gui();
         }

@@ -1,11 +1,10 @@
-﻿namespace Lesson_13
+﻿namespace Lesson_14
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            var player = new Player();
-            player.Run();
+            Console.WriteLine("Hello, World!");
         }
     }
 }
