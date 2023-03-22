@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,24 @@ namespace ContactBook
         public override void Create(IContact contact)
         {
             contact.Id = _contacts.Count;
-            _contacts.Add(contact);
+            try
+            {
+                if (_contacts.Count>0)
+                {
+                    foreach (var contactItem in _contacts)
+                    {
+                        if (contactItem.Name.Contains(contact.Name))
+                        {
+                            throw new DataMisalignedException($"Contact with {nameof(contact.Name)} {contact.Name} is already exists");
+                        }
+                    }
+                }
+                else _contacts.Add(contact);
+            }
+            catch (DeniedOperationException exeption)
+            {
+                Console.WriteLine($"Contact with {nameof(contact.Name)} {contact.Name} is already exists");
+            }
         }
 
         public override IContact GetById(int id)
@@ -41,10 +59,10 @@ namespace ContactBook
                 {
                     Console.WriteLine(contact.PhoneNumber);
                     contacts.Add(contact);
-                    return contacts.ToArray();
+                    return contacts;
                 }
             }
-            return contacts.ToArray();
+            return contacts;
         }
 
         public override IEnumerable<IContact> GetByPhoneNumber(string phoneNumber)
@@ -66,11 +84,20 @@ namespace ContactBook
         {
             foreach(var contact in _contacts)
             {
-                if (contact.Id == id)
+                try
                 {
-                    _contacts.Remove(contact);
-                    return true;
+                    if (contact.Id == id)
+                    {
+                        _contacts.Remove(contact);
+                        return true;
+                    }
+                    else throw new DataMisalignedException($"Contact with {nameof(contact.Id)} {id} is not exists");
                 }
+                catch (DataMisalignedException exeption)
+                {
+                    throw exeption;
+                }
+                
             }
             return false;
         }
