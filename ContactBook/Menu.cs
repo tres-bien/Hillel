@@ -14,7 +14,8 @@ namespace ContactBook
         Two,
         Three,
         Four,
-        Five
+        Five,
+        Six
     }
 
     internal class Menu
@@ -32,36 +33,55 @@ namespace ContactBook
         private bool MainMenu(ContactStore contactStore)
         {
             EnumType enumType;
+            int value;
 
             Console.Title = "### Contact Book ###";
             Console.Clear();
             Console.WriteLine("### Contact Book ###");
             Console.WriteLine(new string('_', 50));
-            Console.Write("\nChose action:\n1 - Show contacts\n2 - Add contact\n3 - Update contact\n4 - Remove contact by Id\n5 - Exit\n\n\rSelect an option: ");
+            Console.Write("\nChose action:" +
+                          "\n1 - Show contacts" +
+                          "\n2 - Add contact" +
+                          "\n3 - Update contact" +
+                          "\n4 - Remove contact by Id" +
+                          "\n5 - Search contact by phone number" +
+                          "\n6 - Search contact by contact name" +
+                          "\n7 - Exit" +
+                          "\n\n\rSelect an option: ");
 
-            enumType = (EnumType)(int.Parse(Console.ReadLine()) + 1);
+            int.TryParse(Console.ReadLine(), out value);
+
+            enumType = (EnumType)value;
 
             try
             {
                 switch (enumType)
                 {
-                    case EnumType.One:
-
+                    case EnumType.Zero:
+                        Console.WriteLine();
                         return ShowContacts(contactStore);
 
-                    case EnumType.Two:
-
+                    case EnumType.One:
+                        Console.WriteLine();
                         return AddContact(contactStore);
 
-                    case EnumType.Three:
-
+                    case EnumType.Two:
+                        Console.WriteLine();
                         return UpdateContact(contactStore);
 
-                    case EnumType.Four:
-
+                    case EnumType.Three:
+                        Console.WriteLine();
                         return RemoveContactById(contactStore);
 
+                    case EnumType.Four:
+                        Console.WriteLine();
+                        return SearchByPhoneNumber(contactStore);
+
                     case EnumType.Five:
+                        Console.WriteLine();
+                        return SearchByName(contactStore);
+
+                    case EnumType.Six:
                         return false;
 
                     default:
@@ -123,6 +143,28 @@ namespace ContactBook
         {
             Console.Write("Enter contact Id: ");
             contactStore.Remove(int.Parse(Console.ReadLine()));
+            return true;
+        }
+
+        private bool SearchByPhoneNumber(ContactStore contactStore)
+        {
+            Console.WriteLine($"Enter contact phone number: ");
+            foreach (var item in contactStore.GetByPhoneNumber(Console.ReadLine()))
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadKey();
+            return true;
+        }
+
+        private bool SearchByName(ContactStore contactStore)
+        {
+            Console.WriteLine($"Enter contact name: ");
+            foreach (var item in contactStore.GetByName(Console.ReadLine()))
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadKey();
             return true;
         }
     }

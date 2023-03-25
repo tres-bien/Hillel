@@ -50,7 +50,6 @@ namespace ContactBook
             {
                 if (contact.Name.Contains(name))
                 {
-                    Console.WriteLine(contact.PhoneNumber);
                     contacts.Add(contact);
                     return contacts;
                 }
@@ -63,11 +62,9 @@ namespace ContactBook
             List<IContact> contacts = new List<IContact>();
             foreach (var contact in _contacts)
             {
-                if (contact.PhoneNumber.Contains(phoneNumber))
+                if (contact.PhoneNumber.Contains(phoneNumber) && phoneNumber != "")
                 {
-                    Console.WriteLine(contact.PhoneNumber);
                     contacts.Add(contact);
-                    return contacts;
                 }
             }
             return contacts;
