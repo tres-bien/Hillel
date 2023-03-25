@@ -28,6 +28,7 @@ namespace ContactBook
                 }
             }
             _contacts.Add(contact);
+            SaveEvent.Invoke(_contacts);
         }
 
         public override IContact GetById(int id)
@@ -80,6 +81,7 @@ namespace ContactBook
                 if (contact.Id == id)
                 {
                     _contacts.Remove(contact);
+                    SaveEvent.Invoke(_contacts);
                     return true;
                 }
                 else throw new DeniedOperationException($"Contact with {nameof(contact.Id)} {id} is not exists");
@@ -91,6 +93,8 @@ namespace ContactBook
         {
             contact.Name = Console.ReadLine();
             contact.PhoneNumber = Console.ReadLine();
+
+            SaveEvent.Invoke(_contacts);
         }
     }
 }

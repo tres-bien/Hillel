@@ -13,11 +13,11 @@ namespace ContactBook
     {
         public bool Save(IEnumerable<IContact> items)
         {
-            var file = new FileInfo(@"ContactBook.txt");
+            var fileName = new FileInfo(@"ContactBook.txt");
 
-            FileStream stream = file.Create();
+            FileStream file = fileName.Create();
 
-            StreamWriter writer = new StreamWriter(stream, Encoding.Unicode);
+            StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
 
             foreach (var item in items)
             {
@@ -26,7 +26,7 @@ namespace ContactBook
 
             writer.Close();
 
-            return file.Exists;
+            return fileName.Exists;
         }
 
         public IEnumerable<IContact> Get()
@@ -38,11 +38,6 @@ namespace ContactBook
             if (directory.Exists)
             {
                 FileInfo[] files = directory.GetFiles("*.txt");
-
-                if (files.Length == 0)
-                {
-                    throw new DeniedOperationException("File ContactBook.txt is not exist");
-                }
 
                 foreach (FileInfo file in files)
                 {
@@ -64,7 +59,6 @@ namespace ContactBook
                             }
                         }
                     }
-                    else throw new DeniedOperationException("File ContactBook.txt is not exist");
                 }
             }
 

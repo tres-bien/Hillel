@@ -13,7 +13,7 @@
 
             menu.Run(contactStore);
 
-            persisrent.Save(contactStore);
+            contactStore.SaveEvent += persisrent.Save;
         }
     }
 }
