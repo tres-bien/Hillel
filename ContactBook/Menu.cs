@@ -29,44 +29,77 @@ namespace ContactBook
 
             if (counter == 0)
             {
-                Console.Write("\nChose action:\n1 - Add contact\n2 - Exit\n\n\rSelect an option: ");
+                Console.Write("\nChose action:\n1 - Show contacts\n2 - Add contact\n3 - Exit\n\n\rSelect an option: ");
             }
             else
             {
                 Console.Write("\nChose action:\n1 - Show contacts\n2 - Add contact\n3 - Remove contact by Id\n4 - Exit\n\n\rSelect an option: ");
             }
-            switch (Console.ReadLine())
+
+            try
             {
-                case "1" when counter != 0:
-                    foreach (var contacts in contactStore)
-                    {
-                        Console.WriteLine(contacts);
-                    }
-                    Console.ReadLine();
-                    return true;
+                switch (Console.ReadLine())
+                {
+                    case "1":
 
-                case "2" when counter != 0:
-                case "1" when counter == 0:
-                    Console.WriteLine($"Enter contact name and phone number: ");
-                    contactStore.Create(new Contact
-                    {
-                        Name = Console.ReadLine(),
-                        PhoneNumber = Console.ReadLine()
-                    });
-                    return true;
+                        return ShowContacts(contactStore);
 
-                case "3" when counter != 0:
-                    Console.Write("Enter contact Id: ");
-                    contactStore.Remove(int.Parse(Console.ReadLine()));
-                    return true;
+                    case "2":
 
-                case "4" when counter != 0:
-                case "2" when counter == 0:
-                    return false;
+                        return AddContact(contactStore);
 
-                default:
-                    return false;
+                    case "3" when counter != 0:
+
+                        return RemoveContactById(contactStore);
+
+                    case "4" when counter != 0:
+                    case "3" when counter == 0:
+                        return false;
+
+                    default:
+                        return false;
+                }
             }
+            catch (DeniedOperationException exeption)
+            {
+                Console.WriteLine(exeption.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"Ooops... something went wrong");
+            }
+            return false;
+        }
+
+        private bool AddContact(ContactStore contactStore)
+        {
+            var contact = new Contact();
+
+            Console.WriteLine($"Enter contact name: ");
+            contact.Name = Console.ReadLine();
+
+            Console.WriteLine($"Enter contact phone number: ");
+            contact.PhoneNumber = Console.ReadLine();
+
+            contactStore.Create(contact);
+            return true;
+        }
+
+        private bool ShowContacts(ContactStore contactStore)
+        {
+            foreach (var contacts in contactStore)
+            {
+                Console.WriteLine(contacts);
+            }
+            Console.ReadKey();
+            return true;
+        }
+
+        private bool RemoveContactById(ContactStore contactStore)
+        {
+            Console.Write("Enter contact Id: ");
+            contactStore.Remove(int.Parse(Console.ReadLine()));
+            return true;
         }
     }
 }

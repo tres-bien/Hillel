@@ -8,33 +8,26 @@ using System.Xml.Linq;
 
 namespace ContactBook
 {
-    internal class ContactStore : BaseContactStore
+    internal class ContactStore : BaseContactStore, INotifiable
     {
         public ContactStore(IContactProvider contactProvider) : base(contactProvider)
         {
         }
 
+        public event SaveDelegate SaveEvent;
+
         public override void Create(IContact contact)
         {
             contact.Id = _contacts.Count;
-            try
+
+            foreach (var contactItem in _contacts)
             {
-                if (_contacts.Count>0)
+                if (contactItem.Name == contact.Name)
                 {
-                    foreach (var contactItem in _contacts)
-                    {
-                        if (contactItem.Name.Contains(contact.Name))
-                        {
-                            throw new DataMisalignedException($"Contact with {nameof(contact.Name)} {contact.Name} is already exists");
-                        }
-                    }
+                    throw new DeniedOperationException($"Contact with {nameof(contact.Name)} {contact.Name} is already exists");
                 }
-                else _contacts.Add(contact);
             }
-            catch (DeniedOperationException exeption)
-            {
-                Console.WriteLine($"Contact with {nameof(contact.Name)} {contact.Name} is already exists");
-            }
+            _contacts.Add(contact);
         }
 
         public override IContact GetById(int id)
@@ -74,30 +67,22 @@ namespace ContactBook
                 {
                     Console.WriteLine(contact.PhoneNumber);
                     contacts.Add(contact);
-                    return contacts.ToArray();
+                    return contacts;
                 }
             }
-            return contacts.ToArray();
+            return contacts;
         }
 
         public override bool Remove(int id)
         {
-            foreach(var contact in _contacts)
+            foreach (var contact in _contacts)
             {
-                try
+                if (contact.Id == id)
                 {
-                    if (contact.Id == id)
-                    {
-                        _contacts.Remove(contact);
-                        return true;
-                    }
-                    else throw new DataMisalignedException($"Contact with {nameof(contact.Id)} {id} is not exists");
+                    _contacts.Remove(contact);
+                    return true;
                 }
-                catch (DataMisalignedException exeption)
-                {
-                    throw exeption;
-                }
-                
+                else throw new DeniedOperationException($"Contact with {nameof(contact.Id)} {id} is not exists");
             }
             return false;
         }
@@ -106,14 +91,6 @@ namespace ContactBook
         {
             contact.Name = Console.ReadLine();
             contact.PhoneNumber = Console.ReadLine();
-        }
-
-        public void AllList()
-        {
-            foreach (var contact in _contacts)
-            {
-                Console.WriteLine("Name: {0} Phone: {1} Id: {2}", contact.Name, contact.PhoneNumber, contact.Id);
-            }
         }
     }
 }

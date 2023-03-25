@@ -4,24 +4,16 @@
     {
         static void Main(string[] args)
         {
-            try
-            {
-                var provider = new InMemoryContactProvider();
-                var contactStore = new ContactStore(provider);
-                var menu = new Menu();
+            var persisrent = new PersistentContactProvider();
+            persisrent.Get();
 
-                menu.Run(contactStore);
+            var provider = new InMemoryContactProvider();
+            var contactStore = new ContactStore(persisrent);
+            var menu = new Menu();
 
-                throw new DeniedOperationException("Plese retry");
-            }
-            catch (DeniedOperationException exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine($"Ooops... something went wrong");
-            }
+            menu.Run(contactStore);
+
+            persisrent.Save(contactStore);
         }
     }
 }

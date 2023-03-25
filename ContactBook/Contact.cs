@@ -14,7 +14,7 @@ namespace ContactBook
 
         public override string ToString()
         {
-            return $"{Id}, {Name}, {PhoneNumber}";
+            return $"{Id}, {Name}, {PhoneNumber};";
         }
     }
 }
