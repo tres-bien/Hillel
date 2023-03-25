@@ -91,6 +91,8 @@ namespace ContactBook
             catch (DeniedOperationException exeption)
             {
                 Console.WriteLine(exeption.Message);
+                Console.ReadLine();
+                return true;
             }
             catch (Exception)
             {

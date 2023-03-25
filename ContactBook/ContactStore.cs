@@ -72,17 +72,18 @@ namespace ContactBook
 
         public override bool Remove(int id)
         {
-            foreach (var contact in _contacts)
+            var contact = GetById(id);
+            if (contact == null)
             {
-                if (contact.Id == id)
-                {
-                    _contacts.Remove(contact);
-                    SaveEvent.Invoke(_contacts);
-                    return true;
-                }
-                else throw new DeniedOperationException($"Contact with {nameof(contact.Id)} {id} is not exists");
+                throw new DeniedOperationException($"Contact with {nameof(contact.Id)} {id} is not exists");
             }
-            return false;
+            _contacts.Remove(contact);
+            for (int i = id - 1; i < _contacts.Count; i++)
+            {
+                _contacts[i].Id = i;
+            }
+            SaveEvent.Invoke(_contacts);
+            return true;
         }
 
         public override void Update(IContact contact)
