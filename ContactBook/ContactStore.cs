@@ -37,7 +37,6 @@ namespace ContactBook
             {
                 if (contact.Id == id)
                 {
-                    Console.WriteLine(contact.Name);
                     return contact;
                 }
             }
@@ -91,9 +90,6 @@ namespace ContactBook
 
         public override void Update(IContact contact)
         {
-            contact.Name = Console.ReadLine();
-            contact.PhoneNumber = Console.ReadLine();
-
             SaveEvent.Invoke(_contacts);
         }
     }

@@ -21,7 +21,7 @@ namespace ContactBook
 
             foreach (var item in items)
             {
-                writer.WriteLine($"{item.Id}, {item.Name}, {item.PhoneNumber};");
+                writer.WriteLine($"{item.Id},{item.Name},{item.PhoneNumber};");
             }
 
             writer.Close();
@@ -50,7 +50,7 @@ namespace ContactBook
                             text = text.Trim('\n', '\r');
                             string[] contactArray = null;
 
-                            string[] contactsArray = text.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                            string[] contactsArray = text.Split(new char[] { ';', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
 
                             for (int i = 0; i < contactsArray.Length; i++)
                             {

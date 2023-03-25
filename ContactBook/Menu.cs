@@ -7,6 +7,16 @@ using System.Threading.Tasks;
 
 namespace ContactBook
 {
+    enum EnumType : byte
+    {
+        Zero = 1,
+        One,
+        Two,
+        Three,
+        Four,
+        Five
+    }
+
     internal class Menu
     {
         public void Run(ContactStore contactStore)
@@ -21,31 +31,37 @@ namespace ContactBook
 
         private bool MainMenu(ContactStore contactStore)
         {
+            EnumType enumType;
+
             Console.Title = "### Contact Book ###";
             Console.Clear();
             Console.WriteLine("### Contact Book ###");
             Console.WriteLine(new string('_', 50));
             Console.Write("\nChose action:\n1 - Show contacts\n2 - Add contact\n3 - Update contact\n4 - Remove contact by Id\n5 - Exit\n\n\rSelect an option: ");
 
+            enumType = (EnumType)(int.Parse(Console.ReadLine()) + 1);
+
             try
             {
-                switch (Console.ReadLine())
+                switch (enumType)
                 {
-                    case "1":
+                    case EnumType.One:
 
                         return ShowContacts(contactStore);
 
-                    case "2":
+                    case EnumType.Two:
 
                         return AddContact(contactStore);
 
-                    case "3":
+                    case EnumType.Three:
+
                         return UpdateContact(contactStore);
 
-                    case "4":
+                    case EnumType.Four:
+
                         return RemoveContactById(contactStore);
 
-                    case "5":
+                    case EnumType.Five:
                         return false;
 
                     default:
@@ -90,7 +106,16 @@ namespace ContactBook
         private bool UpdateContact(ContactStore contactStore)
         {
             Console.Write("Enter contact Id: ");
-            contactStore.Update( contactStore.GetById( int.Parse(Console.ReadLine()) ) );
+            var contact = contactStore.GetById(int.Parse(Console.ReadLine()));
+
+            Console.WriteLine($"Enter contact name: ");
+            contact.Name = Console.ReadLine();
+
+            Console.WriteLine($"Enter contact phone number: ");
+            contact.PhoneNumber = Console.ReadLine();
+
+            
+            contactStore.Update(contact);
             return true;
         }
 

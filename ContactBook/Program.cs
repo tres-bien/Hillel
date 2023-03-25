@@ -9,11 +9,11 @@
 
             var provider = new InMemoryContactProvider();
             var contactStore = new ContactStore(persisrent);
+            contactStore.SaveEvent += persisrent.Save;
             var menu = new Menu();
 
             menu.Run(contactStore);
 
-            contactStore.SaveEvent += persisrent.Save;
         }
     }
 }
